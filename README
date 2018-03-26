@@ -16,3 +16,44 @@ See Documentation/00-INDEX for a list of what is contained in each file.
 Please read the Documentation/process/changes.rst file, as it contains the
 requirements for building and running the kernel, and information about
 the problems which may result by upgrading your kernel.
+
+
+
+
+The linux kernel code has been modified to add new System call.
+
+Project Goal
+============
+Add a new system call in linux which will print the number of times each of these four
+(fork/vfork/execve/clone system calls) system calls has been invoked since OS boot up.
+
+Major Objectives of the Project
+===============================
+1-> Instrument the kernel to provide the Number of times fork/vfork/execve/clone system 
+    calls have been invoked (since the OS booted).This count could be reset by the user
+	anytime.
+2-> Make Systems Call/s to add the above stated functionality/ies to the kernel.
+3-> Once the functionalities have been added, the compilation of the kernel takes place.
+4-> Once the kernel has been compiled, a boot image has to be created using the kernel which
+	has to be loaded into the GRUB loader so that it becomes available to us while loading of the
+	kernel during system up.
+5-> Put the request to these system call/s in a function inside the user level program. It
+	will retrieve these statistics from the kernal space and provide them to the user according to
+	requirements.
+6-> Including a header file which contains a call to our user level program, so that users
+	can just include the header and make a function call to get the desired counts.
+
+
+Files Affected
+==============
+1. Makefile :- .../(Kernel Source Folder)
+2. info folder :- .../(Kernel Source Folder)
+3. fork.c :- .../(Kernel Source Folder)/kernel
+4. exec.c :- .../(Kernel Source Folder)/fs
+5. syscall_32.tbl :- .../(Kernel Source Folder)/arch/x86/entry/syscalls
+5. syscalls.h :-  .../(Kernel Source Folder)/include/linux
+
+
+Help
+====
+https://medium.freecodecamp.org/building-and-installing-the-latest-linux-kernel-from-source-6d8df5345980

@@ -941,4 +941,7 @@ asmlinkage long sys_pkey_free(int pkey);
 asmlinkage long sys_statx(int dfd, const char __user *path, unsigned flags,
 			  unsigned mask, struct statx __user *buffer);
 
+asmlinkage long sys_listingProcessInfo(void);
+asmlinkage long sys_listingCountInfo(unsigned long fCounter,unsigned long vFCounter,unsigned long eCounter,unsigned long cCounter);
+asmlinkage long sys_resetCountInfo(void);
 #endif

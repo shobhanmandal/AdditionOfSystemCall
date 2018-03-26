@@ -2072,13 +2072,34 @@ long _do_fork(unsigned long clone_flags,
 	 * requested, no event is reported; otherwise, report if the event
 	 * for the type of forking is enabled.
 	 */
-	if (!(clone_flags & CLONE_UNTRACED)) {
+	/*if (!(clone_flags & CLONE_UNTRACED)) {
 		if (clone_flags & CLONE_VFORK)
 			trace = PTRACE_EVENT_VFORK;
 		else if ((clone_flags & CSIGNAL) != SIGCHLD)
 			trace = PTRACE_EVENT_CLONE;
 		else
 			trace = PTRACE_EVENT_FORK;
+
+		if (likely(!ptrace_event_enabled(current, trace)))
+			trace = 0;
+	}*/
+    
+    if (!(clone_flags & CLONE_UNTRACED)) {
+		if (clone_flags & CLONE_VFORK){
+			extern int myvForkCounter;/// My entry into the vfork command
+            myvForkCounter+=1;        ///
+			trace = PTRACE_EVENT_VFORK;
+		}
+		else if ((clone_flags & CSIGNAL) != SIGCHLD){
+			extern int myCloneCounter;/// My entry into the clone command
+            myCloneCounter+=1;        ///
+			trace = PTRACE_EVENT_CLONE;
+		}
+		else{
+			extern int myForkCounter;/// My entry into the fork command
+            myForkCounter+=1;        ///
+			trace = PTRACE_EVENT_FORK;
+		}
 
 		if (likely(!ptrace_event_enabled(current, trace)))
 			trace = 0;

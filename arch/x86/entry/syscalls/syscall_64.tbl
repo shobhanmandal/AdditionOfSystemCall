@@ -339,6 +339,9 @@
 330	common	pkey_alloc		sys_pkey_alloc
 331	common	pkey_free		sys_pkey_free
 332	common	statx			sys_statx
+333 common	listingProcessInfo		sys_listingProcessInfo 
+334 common	listingCountInfo		sys_listingCountInfo
+335 common	resetCountInfo		sys_resetCountInfo
 
 #
 # x32-specific system call numbers start at 512 to avoid cache impact
