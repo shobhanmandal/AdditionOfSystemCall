@@ -31,19 +31,8 @@ asmlinkage long sys_listingProcessInfo(void) {
     for_each_process(proces) {
  
     printk(
-      "Process: %s\n \
-       PID_Number: %ld\n \
-       Process State: %ld\n \
-       Priority: %ld\n \
-       RT_Priority: %ld\n \
-       Static Priority: %ld\n \
-       Normal Priority: %ld\n", \
-       proces->comm, \
-       (long)task_pid_nr(proces), \
-       (long)proces->state, \
-       (long)proces->prio, \
-       (long)proces->rt_priority, \
-       (long)proces->static_prio, \
+      "Process: %s\n PID_Number: %ld\n Process State: %ld\n Priority: %ld\n RT_Priority: %ld\n Static Priority: %ld\n Normal Priority: %ld\n", \
+       proces->comm, (long)task_pid_nr(proces), (long)proces->state, (long)proces->prio, (long)proces->rt_priority, (long)proces->static_prio, \
        (long)proces->normal_prio \
     );
   
